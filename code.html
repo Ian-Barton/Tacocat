@@ -21,7 +21,7 @@
 <!--Nav Section-->
 <nav class="navbar navbar-expand-md navbar-dark fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#"><img src="img/logo.png" class="d-inline-block align-text-top" width="30">App Name</a>
+        <a class="navbar-brand" href="#"><img src="img/logo.png" class="d-inline-block align-text-top" width="30">Tacocat</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
             aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -55,19 +55,93 @@
     <div class="container py-5 px-5 mt-5">
         <h2 class="border-1 border-bottom border-dark">The Code</h2>
         <div class="row row-cols-1 row-cols-lg-2">
-            <div class="col-lg-8">
+            <div class="col-lg-6">
                 <pre class="line-numbers">
                     <code class="language-javascript">
-                        function HelloWorld() {
-                            alert("Hello World");
-                        }
+function getValues() {
+    document.getElementById("alert").classList.add("invisible");
+    let userString = document.getElementById("userString").value;
+    userString = userString.replace(" ", "");
+    userString = userString.toLocaleLowerCase(userString);
+    reverseString(userString);
+}
+//Reverse the String
+//Logic Function
+function reverseString(userString) {
+    let revString = [];
+
+    for (let i = userString.length - 1; i >=0; i--) {
+        revString += userString[i];
+    }
+    displayTacocat(userString, revString)
+}
+//Display the message
+//View Function
+function displayTacocat(userString, revString) {
+    if (userString == revString) {
+        document.getElementById("msg").innerHTML = `Your palindrome is: ${userString}`;
+        document.getElementById("alert").classList.remove("invisible");
+    }
+    else {
+        document.getElementById("msg").innerHTML = `You don't have a palindrome`;
+        document.getElementById("alert").classList.remove("invisible");
+    }
+}
                     </code>
                 </pre>
             </div>
-            <div class="col-lg-4">
-                <p>The Code is structed in one Function.</p>
-                <h5>Hello World.</h5>
-                <p>Hello World is a Function that displays an Alert that contains the message "Hello Wolrd."</p>
+            <div class="col-lg-6">
+                <pre class="line-numbers">
+                    <code class="language-javascript">
+    function getValues() {
+        document.getElementById("alert").classList.add("invisible");
+        let userString = document.getElementById("userString").value;
+        let returnObj = checkString(userString);
+        display(returnObj);
+    }
+    
+    function checkString(userString) {
+        userString = userString.toLowerCase();
+        let regex = /[^a-z0-9]/gi;
+        userString = userString.replace(regex,"");
+    
+        let revString = [];
+        let returnObj = {};
+    
+        for (let i = userString.length - 1; i >=0; i--) {
+            revString += userString[i];
+        }
+    
+        if (revString == userString) {
+            returnObj.msg = "Well done! You've entered a Palindrome."
+        }
+        else {
+            returnObj.msg = "Sorry! You did not enter a Palindrome."
+        }
+    
+        returnObj.reversed = revString;
+        return returnObj;
+    }
+    
+    function display(returnObj) {
+        document.getElementById("alertHeader").innerHTML = returnObj.msg;
+        document.getElementById("msg").innerHTML = `Your phrase reversed is: ${returnObj.reversed}`;
+        document.getElementById("alert").classList.remove("invisible");
+    }
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="row row-cols-1 row-cols-lg-2">
+            <div class="col-lg-6">
+                <p>The Code is structed in three Functions.</p>
+                <h5>My Version.</h5>
+                <p>I added the fields for the user to input and submit. I then added the scripting. It removes the space between the two words and then lower cases it. It then compares it to a reversed version to see if they are the same.</p>
+            </div>
+            <div class="col-lg-6">
+                <p>The Code is structed in three Functions.</p>
+                <h5>Boot Camp Version.</h5>
+                <p>The boot camp version did it a little different compared to mine. It added a regex to check and remove special characters. It also stored the reversed version of the word and the special message in an object. This would be the first time in this boot camp that an object was used.</p>
             </div>
         </div>
     </div>
